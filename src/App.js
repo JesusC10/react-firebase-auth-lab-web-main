@@ -41,6 +41,7 @@ export default function App(props) {
     <Loading />
   ) : (
     <div className="App">
+      <h2>{REACT_APP_NAME}</h2>
       <h1>{currentUser} </h1>
       <Index
         socialLogin={socialLogin}
