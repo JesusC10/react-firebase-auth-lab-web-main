@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 
 export default function Logout(props) {
-  console.log(props.signOut);
+
   return (
     <Button
       type="button"

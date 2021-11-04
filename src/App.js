@@ -4,9 +4,9 @@ import Login from "./paginas/Login";
 import Index from "./paginas/Index";
 import Loading from "./components/Loading";
 import utilsFunctions from "./funciones/FirebaseFunctions";
+
+
 export default function App(props) {
-  //console.log("props-> App");
-  //console.log(props);
 
   const { firebase, currentUser, getCurrentUser } = utilsFunctions(props);
 
@@ -41,7 +41,6 @@ export default function App(props) {
     <Loading />
   ) : (
     <div className="App">
-      <h2>{process.env.REACT_APP_NAME}</h2>
       <h1>{currentUser} </h1>
       <Index
         socialLogin={socialLogin}

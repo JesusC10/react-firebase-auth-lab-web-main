@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Menu from "./Menu";
 import Dashboard from "./Dashboard";
 import Logout from "./Logout";
 import SignUp from "./Signup";
@@ -8,6 +9,7 @@ import getFirebase from "../firebase/firebaseconfiguration";
 
 export default function Index(props) {
   const firebase = getFirebase();
+  const pathName = props.history.location.pathname;
 
   const socialLogin = async (props) => {
     await firebase
@@ -75,24 +77,28 @@ export default function Index(props) {
     <Router>
       {props.currentUser ? (
         <Switch>
+          <Route exact path={"/"} render={() => <Menu history={props.history} />}></Route>
           <Route
-            exact
-            path={"/"}
+            path={"/dashboard"}
             render={() => (
-              <Dashboard
-                firebase={props.firebase}
-                signupSubmit={signupSubmit}
+              <Menu
                 history={props.history}
+                componenteAdicional={<Dashboard />}
               />
             )}
           ></Route>
           <Route
             path={"/logout"}
             render={() => (
-              <Logout
-                signOut={signOut}
-                firebase={props.firebase}
+              <Menu
                 history={props.history}
+                componenteAdicional={
+                  <Logout
+                    signOut={signOut}
+                    firebase={props.firebase}
+                    history={props.history}
+                  />
+                }
               />
             )}
           ></Route>
